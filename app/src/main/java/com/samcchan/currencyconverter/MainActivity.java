@@ -100,17 +100,19 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                Log.i(TAG, "onTextChanged: top number");
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2){
                 if(focusOn.equals("top")){
                     if(charSequence.length() != 0) {
                         float from = Float.parseFloat(charSequence.toString());
                         float to = convert(from, top_currency, bottom_currency);
                         top_number = from;
+                        Log.i(TAG, "onTextChanged: top number is " + charSequence.toString());
                         bottom_number = to;
                         String res = Float.toString(to);
                         bottomNumber.setText(res);
                     } else {
+                        top_number = 0.0f;
+                        bottom_number = 0.0f;
                         bottomNumber.setText("");
                     }
                 }
@@ -142,6 +144,8 @@ public class MainActivity extends AppCompatActivity {
                         String res = Float.toString(to);
                         topNumber.setText(res);
                     } else {
+                        top_number = 0.0f;
+                        bottom_number = 0.0f;
                         topNumber.setText("");
                     }
                 }
