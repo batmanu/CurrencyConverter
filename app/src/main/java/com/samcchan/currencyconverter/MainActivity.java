@@ -17,9 +17,10 @@ public class MainActivity extends AppCompatActivity {
 
     final String[] currency = {"USD", "Euro", "HKD", "Yuan", "Yen", "Dong"};
     public String top_currency = "USD";
+    public float top_number = 0.0f;
+    public float bottom_number = 0.0f;
     public String bottom_currency = "Euro";
     public static final String TAG = "MainActivity";
-    public boolean converting = false;
     String focusOn;
 
 
@@ -46,6 +47,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 top_currency = currency[i];
+                if (top_number != 0.0f && bottom_number != 0.0f){
+                    float to = convert(top_number, top_currency, bottom_currency);
+                    String res = Float.toString(to);
+                    bottomNumber.setText(res);
+                }
             }
 
             @Override
@@ -58,6 +64,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 bottom_currency = currency[i];
+                if (top_number != 0.0f && bottom_number != 0.0f){
+                    float to = convert(bottom_number, bottom_currency, top_currency);
+                    String res = Float.toString(to);
+                    topNumber.setText(res);
+                }
             }
 
             @Override
@@ -95,6 +106,8 @@ public class MainActivity extends AppCompatActivity {
                     if(charSequence.length() != 0) {
                         float from = Float.parseFloat(charSequence.toString());
                         float to = convert(from, top_currency, bottom_currency);
+                        top_number = from;
+                        bottom_number = to;
                         String res = Float.toString(to);
                         bottomNumber.setText(res);
                     } else {
@@ -124,6 +137,8 @@ public class MainActivity extends AppCompatActivity {
                     if(charSequence.length() != 0) {
                         float from = Float.parseFloat(charSequence.toString());
                         float to = convert(from, bottom_currency, top_currency);
+                        bottom_number = from;
+                        top_number = to;
                         String res = Float.toString(to);
                         topNumber.setText(res);
                     } else {
