@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">CurrencyConverter</string>
+    <string-array name="currency">
+        <item>US Dollar</item>
+        <item>Euro</item>
+        <item>Hong Kong Dollar</item>
+        <item>Chinese Yuan</item>
+        <item>Japanese Yen</item>
+        <item>Vietnamese Dong</item>
+    </string-array>
+</resources>
